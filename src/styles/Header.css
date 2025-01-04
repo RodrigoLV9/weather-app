@@ -1,0 +1,36 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:10px 30px;
+    border-bottom:2px solid black
+}
+/* COMPONENT: BRAND */
+.brand{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    cursor:pointer
+}
+.brand img{
+    width:40px;
+    height: 40px;
+}
+/* COMPONENT: CONTROLS */
+.controls{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:20px
+}
+.controls img{
+    width:40px;
+    height: 25px;
+}
+.controls__settings{
+    font-size: 2em;
+}
+button{
+    border:none
+}
