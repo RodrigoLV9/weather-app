@@ -1,16 +1,16 @@
 import React from 'react'
-import { IoRainy } from "react-icons/io5";
 
 interface PropsDailyValue{
     time:string,
     day:string,
     description:string,
+    nameImage:string,
     temp_max:number,
     temp_min:number,
     sunrise:string,
     sunset:string
 }
-export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, temp_max, temp_min,sunrise,sunset}) => {
+export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, nameImage, temp_max, temp_min,sunrise,sunset}) => {
 
   return (
     <div className="dailyItem">
@@ -19,7 +19,8 @@ export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, temp
             <p>{time}</p>
         </div>
         <div className="dailyItem__temperature">
-            <IoRainy className='icon'/>
+            <img src={`/public/icons/${nameImage}.png`} alt={nameImage} className='icon' />
+            {/* <IoRainy className='icon'/> */}
             <p>{temp_max}°C / {temp_min}°C</p>
         </div>
         <div className="dailyItem__description">

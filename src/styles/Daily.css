@@ -27,7 +27,8 @@
     gap:10px
 }
 .icon{
-    font-size: 1.5em;
+    width:35px;
+    height: 35px;
 }
 .dailyItem__description{
     font-weight: bold;

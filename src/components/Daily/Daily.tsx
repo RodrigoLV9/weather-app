@@ -3,7 +3,7 @@ import { DailyItem } from './DailyItem';
 import '../../styles/Daily.css';
 import { usePlace } from '../Context/ContextPlace';
 
-const weatherCategoriesES: {[key:number]:string} = {
+/* const weatherCategoriesES: {[key:number]:string} = {
   0: "Soleado",
   1: "Parcialmente nublado",
   2: "Parcialmente nublado",
@@ -28,7 +28,7 @@ const weatherCategoriesES: {[key:number]:string} = {
   95: "Tormenta",
   96: "Tormenta con granizo",
   99: "Tormenta con granizo"
-};
+}; */
 const weatherCategoriesEN: { [key: number]: string } = {
   0: "Sunny",
   1: "Partly cloudy",
@@ -55,11 +55,11 @@ const weatherCategoriesEN: { [key: number]: string } = {
   96: "Storm with hail",
   99: "Storm with hail",
 };
-
 interface DailyForecast {
   date: string;
   day:string;
   description:string;
+  nameImage:string,
   icon:string;
   maxTemp: number;
   minTemp: number;
@@ -81,6 +81,36 @@ interface DailyData {
 export const Daily: React.FC = () => {
   const [dataDaily, setDataDaily] = useState<DailyForecast[]>([]);
   const { place } = usePlace()
+
+  const getnameImage=(code:string)=>{
+    switch (code) {
+      case ('Sunny'):
+      case ('Soleado'):
+        return 'sun';
+      case 'Partly cloudy':
+        return 'cloudy1'
+      case 'Cloudy':
+        return 'cloudy2'
+      case 'Light rain':
+        return 'rain1';
+      case 'Heavy rain':
+        return 'rain2'
+      case 'Storm':
+        return 'storm'
+      case 'Light snow':
+        return 'snow1'
+      case 'Moderate snow':
+        return 'snow2'
+      case 'Heavy snow':
+        return 'snow3'
+      case 'Fog':
+        return 'fog'
+      case 'Storm with hail':
+        return 'hail'
+      default:
+        break;
+    }
+  }
   const getDescription=(code:number)=>{
     return weatherCategoriesEN[code] ||  'Unknown weather'
   }
@@ -97,10 +127,13 @@ export const Daily: React.FC = () => {
       const date=dailyData.daily.time[index].slice(-4).replace('-','/')
       const day=getDayOfWeek(dailyData.daily.time[index])
       const description=getDescription(dailyData.daily.weathercode[index])
+      const nameOfImage=getnameImage(description)
+      console.log(nameOfImage)
       return {
         date: date,
         day:day,
         description:description,
+        nameImage:nameOfImage,
         maxTemp: dailyData.daily.temperature_2m_max[index],
         minTemp: dailyData.daily.temperature_2m_min[index],
         weatherCode: dailyData.daily.weathercode[index],
@@ -132,7 +165,7 @@ export const Daily: React.FC = () => {
       <div className="daily__title">Daily Forecast</div>
       {
         dataDaily.map((item,index)=>(
-          <DailyItem key={index} time={item.date} day={item.day} description={item.description} temp_max={item.maxTemp} temp_min={item.minTemp} sunrise={item.sunrise} sunset={item.sunset}/>
+          <DailyItem key={index} time={item.date} day={item.day} description={item.description} nameImage={item.nameImage} temp_max={item.maxTemp} temp_min={item.minTemp} sunrise={item.sunrise} sunset={item.sunset}/>
         ))
       }
       
