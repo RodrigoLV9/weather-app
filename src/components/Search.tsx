@@ -13,7 +13,7 @@ interface Place {
 }
 
 export const Search: React.FC = () => {
-  const {place,setPlace } = usePlace();
+  const {setPlace } = usePlace();
   const [places, setPlaces] = useState<Place[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const loc_ref = useRef<HTMLInputElement>(null);
@@ -25,7 +25,7 @@ export const Search: React.FC = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     const selectedPlace = places.find(place => `${place.name}, ${place.state}, ${place.country}` === event.target.value);
-    console.log(setSearchTerm)
+    /* console.log(setSearchTerm) */
     if (selectedPlace) {
       setPlace({
         city: selectedPlace.name,

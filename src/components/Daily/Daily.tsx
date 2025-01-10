@@ -144,15 +144,18 @@ export const Daily: React.FC = () => {
 
   useEffect(() => {
     const fetchForecast = async () => {
-      try {
-        const response = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${place?.lat}&longitude=${place?.lon}&daily=temperature_2m_max,temperature_2m_min,weathercode,sunrise,sunset&timezone=auto`
-        );
-        const data = await response.json();
-        handleDataDaily(data);
-      } catch (error) {
-        console.error('Error fetching daily forecast:', error);
+      if(place){
+        try {
+          const response = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${place?.lat}&longitude=${place?.lon}&daily=temperature_2m_max,temperature_2m_min,weathercode,sunrise,sunset&timezone=auto`
+          );
+          const data = await response.json();
+          handleDataDaily(data);
+        } catch (error) {
+          console.error('Error fetching daily forecast:', error);
+        }
       }
+      
     };
     fetchForecast();
   }, [place]);

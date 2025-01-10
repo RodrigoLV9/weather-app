@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import { FaLocationDot } from "react-icons/fa6";
 import { usePlace } from '../Context/ContextPlace';
 const key_ipinfo=import.meta.env.VITE_AK_IPINFO
 export const WeatherHeader:React.FC = () => {
-  const [location, setLocation]=useState('')
   const {place, setPlace}=usePlace()
 
   useEffect(()=>{
     const fetchLocationData= async ()=>{
       const rawData=await fetch(`https://ipinfo.io/json?token=${key_ipinfo}`)
       const data=await rawData.json()
-      setLocation(data.loc)
       const [lat,lon]=data.loc.split(',')
       setPlace({
         city:data.city,
@@ -20,12 +18,9 @@ export const WeatherHeader:React.FC = () => {
         lat:lat,
 
       })
-      console.log(place?.lon)
-
     }
     fetchLocationData()
   },[setPlace])
-  console.log(location)
   return (
     <section className='weatherHeader'>
         <div className='weatherHeader__time'>

@@ -73,4 +73,10 @@
 }
 .weatherDetails__item{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px
+}
+.weatherDetails__item-icon{
+    font-size: 1.4em;
 }
