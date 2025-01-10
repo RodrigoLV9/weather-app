@@ -23,7 +23,7 @@ export const WeatherCard:React.FC = () => {
   useEffect(()=>{
     const fetchApiWeather=async()=>{
       if(place){
-        const rawData=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place?.city},${place?.country}&APPID=${key}`)
+        const rawData=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place?.city},${place?.country}&units=metric&APPID=${key}`)
         const data=await rawData.json()
         setInfo({
           description: data.weather[0].description,

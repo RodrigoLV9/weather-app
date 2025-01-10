@@ -20,7 +20,6 @@ export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, name
         </div>
         <div className="dailyItem__temperature">
             <img src={`/public/icons/${nameImage}.png`} alt={nameImage} className='icon' />
-            {/* <IoRainy className='icon'/> */}
             <p>{temp_max}°C / {temp_min}°C</p>
         </div>
         <div className="dailyItem__description">

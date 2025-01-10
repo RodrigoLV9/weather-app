@@ -13,13 +13,13 @@ export const WeatherTemperature:React.FC<WeatherValues>= ({description='', icon=
         <p>{description.charAt(0).toUpperCase() + description.slice(1)}</p>
         <div className="temperature">
             <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="weather-icon" className='temperature__icon' />
-            <p>{temp}°K</p>
+            <p>{temp}°C</p>
         </div>
-        <p>Thermal sensation: {thermal_sensation}°K</p>
+        <p>Thermal sensation: {thermal_sensation}°C</p>
         <div className='temp-minmax'>
-            <p className='temp-min'>{temp_min}°K </p>
+            <p className='temp-min'>{temp_min}°C </p>
             <p>/</p>
-            <p className='temp-max'>{temp_max}°K</p>
+            <p className='temp-max'>{temp_max}°C</p>
         </div>
     </section>
   )

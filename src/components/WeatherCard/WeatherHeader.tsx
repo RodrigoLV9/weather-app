@@ -11,12 +11,16 @@ export const WeatherHeader:React.FC = () => {
       const rawData=await fetch(`https://ipinfo.io/json?token=${key_ipinfo}`)
       const data=await rawData.json()
       setLocation(data.loc)
-
+      const [lat,lon]=data.loc.split(',')
       setPlace({
         city:data.city,
         state:data.region,
-        country:data.country
+        country:data.country,
+        lon:lon,
+        lat:lat,
+
       })
+      console.log(place?.lon)
 
     }
     fetchLocationData()

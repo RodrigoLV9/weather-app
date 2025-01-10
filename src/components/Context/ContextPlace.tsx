@@ -1,9 +1,11 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react'
-
 interface PlaceValue{
   city:string,
   state:string,
-  country:string
+  country:string,
+  lon:string,
+  lat:string
+  
 }
 interface PlaceContextValue{
   place:PlaceValue |undefined,

@@ -8,10 +8,12 @@ interface Place {
   name: string;
   state: string;
   country: string;
+  lon:string;
+  lat:string
 }
 
 export const Search: React.FC = () => {
-  const { setPlace } = usePlace();
+  const {place,setPlace } = usePlace();
   const [places, setPlaces] = useState<Place[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const loc_ref = useRef<HTMLInputElement>(null);
@@ -23,11 +25,14 @@ export const Search: React.FC = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     const selectedPlace = places.find(place => `${place.name}, ${place.state}, ${place.country}` === event.target.value);
+    console.log(setSearchTerm)
     if (selectedPlace) {
       setPlace({
         city: selectedPlace.name,
         state: selectedPlace.state,
-        country: selectedPlace.country
+        country: selectedPlace.country,
+        lon:selectedPlace.lon,
+        lat:selectedPlace.lat
       });
     }
   };
@@ -39,6 +44,7 @@ export const Search: React.FC = () => {
         const data = await rawData.json();
         setPlaces(data);
       }
+
     };
     fetchPlacesData();
   }, [searchTerm]);

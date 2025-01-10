@@ -60,7 +60,6 @@ interface DailyForecast {
   day:string;
   description:string;
   nameImage:string,
-  icon:string;
   maxTemp: number;
   minTemp: number;
   weatherCode: number;
@@ -108,14 +107,14 @@ export const Daily: React.FC = () => {
       case 'Storm with hail':
         return 'hail'
       default:
-        break;
+        return 'unknown'
     }
   }
-  const getDescription=(code:number)=>{
+  const getDescription=(code:number):string=>{
     return weatherCategoriesEN[code] ||  'Unknown weather'
   }
-  function getDayOfWeek(dateString:string) {
-    const date = new Date(dateString); // Convierte la fecha ISO en un objeto Date
+  function getDayOfWeek(dateString:string):string {
+    const date = new Date(dateString);
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
     return daysOfWeek[localDate.getDay()];
@@ -128,7 +127,6 @@ export const Daily: React.FC = () => {
       const day=getDayOfWeek(dailyData.daily.time[index])
       const description=getDescription(dailyData.daily.weathercode[index])
       const nameOfImage=getnameImage(description)
-      console.log(nameOfImage)
       return {
         date: date,
         day:day,
@@ -148,11 +146,10 @@ export const Daily: React.FC = () => {
     const fetchForecast = async () => {
       try {
         const response = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=-34.6037&longitude=-58.3816&daily=temperature_2m_max,temperature_2m_min,weathercode,sunrise,sunset&timezone=auto`
+          `https://api.open-meteo.com/v1/forecast?latitude=${place?.lat}&longitude=${place?.lon}&daily=temperature_2m_max,temperature_2m_min,weathercode,sunrise,sunset&timezone=auto`
         );
         const data = await response.json();
         handleDataDaily(data);
-        console.log(data)
       } catch (error) {
         console.error('Error fetching daily forecast:', error);
       }
