@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { IoMdSearch } from "react-icons/io";
 import '../styles/Search.css';
 import { usePlace } from './Context/ContextPlace';
+import { useLanguage } from './Context/ContextLanguage';
 const key_op = import.meta.env.VITE_AK_OPENWEATHER;
 
 interface Place {
@@ -13,6 +14,7 @@ interface Place {
 }
 
 export const Search: React.FC = () => {
+  const {language}=useLanguage()
   const {setPlace } = usePlace();
   const [places, setPlaces] = useState<Place[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -25,7 +27,6 @@ export const Search: React.FC = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     const selectedPlace = places.find(place => `${place.name}, ${place.state}, ${place.country}` === event.target.value);
-    /* console.log(setSearchTerm) */
     if (selectedPlace) {
       setPlace({
         city: selectedPlace.name,
@@ -53,7 +54,7 @@ export const Search: React.FC = () => {
     <section className='search'>
       <input
         type="text"
-        placeholder='Write country, city or state...'
+        placeholder={language ? 'Write city, state and country' : 'Escribir ciudad, estado y pais'}
         ref={loc_ref}
         list='locations'
         onChange={handleChange}

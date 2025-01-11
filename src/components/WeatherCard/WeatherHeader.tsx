@@ -1,10 +1,15 @@
 import React, {useEffect} from 'react'
 import { FaLocationDot } from "react-icons/fa6";
 import { usePlace } from '../Context/ContextPlace';
+import { useLanguage } from '../Context/ContextLanguage';
 const key_ipinfo=import.meta.env.VITE_AK_IPINFO
-export const WeatherHeader:React.FC = () => {
+interface WeatherHeaderProps{
+  hours:number,
+  minutes:number
+}
+export const WeatherHeader:React.FC <WeatherHeaderProps>= ({hours,minutes}) => {
   const {place, setPlace}=usePlace()
-
+  const {language}=useLanguage()
   useEffect(()=>{
     const fetchLocationData= async ()=>{
       const rawData=await fetch(`https://ipinfo.io/json?token=${key_ipinfo}`)
@@ -21,11 +26,12 @@ export const WeatherHeader:React.FC = () => {
     }
     fetchLocationData()
   },[setPlace])
+
   return (
     <section className='weatherHeader'>
         <div className='weatherHeader__time'>
-            <p>The weather now</p>
-            <p>20:35</p>
+            <p>{language ? 'The weather now' : 'El clima ahora'}</p>
+            <p>{`${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}`}</p>
         </div>
         <div className='weatherHeader__location'>
             <FaLocationDot/>

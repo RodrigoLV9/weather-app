@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useLanguage } from '../Context/ContextLanguage'
 interface PropsDailyValue{
     time:string,
     day:string,
@@ -11,7 +11,7 @@ interface PropsDailyValue{
     sunset:string
 }
 export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, nameImage, temp_max, temp_min,sunrise,sunset}) => {
-
+    const {language}=useLanguage()
   return (
     <div className="dailyItem">
         <div className="dailyItem__time">
@@ -27,11 +27,11 @@ export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, name
         </div>
         <div className="dailyItem__sun">
             <div className="sunrise">
-                <p>Sunrise</p>
+                <p>{language ? 'Sunrise' : 'Salida de Sol'}</p>
                 <p>{sunrise}</p>
             </div>
             <div className="sunset">
-                <p>Sunset</p>
+                <p>{language ? 'Sunset' : 'Puesta de Sol'}</p>
                 <p>{sunset}</p>
             </div>
         </div>

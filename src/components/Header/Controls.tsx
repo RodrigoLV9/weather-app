@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { IoMdSettings } from "react-icons/io";
+import { useLanguage } from '../Context/ContextLanguage';
 export const Controls:React.FC = () => {
-  const [idiom,setIdiom]=useState(true)
+  const {language,setLanguage}=useLanguage()
   const handleIdiom=()=>{
-    setIdiom(!idiom)
+    setLanguage(!language)
   }
   return (
     <div className='controls'>
       <button onClick={handleIdiom}>
-        {idiom ? <img src="./images/spanish.png" alt="country"/> : <img src="./images/english.png" alt="country"/>}
+        {language ? <img src="./images/english.png" alt="español-logo"/> : <img src="./images/spanish.png" alt="english-icon"/>}
       </button>
       <IoMdSettings className='controls__settings'/>
     </div>

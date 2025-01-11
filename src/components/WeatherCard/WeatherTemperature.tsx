@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLanguage } from '../Context/ContextLanguage'
 interface WeatherValues{
   description?:string,
   icon?:string,
@@ -8,6 +9,7 @@ interface WeatherValues{
   temp_min?:number
 }
 export const WeatherTemperature:React.FC<WeatherValues>= ({description='', icon='13d', temp=0, thermal_sensation=0, temp_max=0, temp_min=0}) => {
+  const {language}=useLanguage()
   return (
     <section className='weatherTemperature'>
         <p>{description.charAt(0).toUpperCase() + description.slice(1)}</p>
@@ -15,7 +17,7 @@ export const WeatherTemperature:React.FC<WeatherValues>= ({description='', icon=
             <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="weather-icon" className='temperature__icon' />
             <p>{temp}°C</p>
         </div>
-        <p>Thermal sensation: {thermal_sensation}°C</p>
+        <p>{language ? 'Thermal sensation:' : 'Sensacion Termica'} {thermal_sensation}°C</p>
         <div className='temp-minmax'>
             <p className='temp-min'>{temp_min}°C </p>
             <p>/</p>

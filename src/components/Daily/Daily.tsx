@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { DailyItem } from './DailyItem';
 import '../../styles/Daily.css';
 import { usePlace } from '../Context/ContextPlace';
-
-/* const weatherCategoriesES: {[key:number]:string} = {
+import { useLanguage } from '../Context/ContextLanguage';
+const weatherCategoriesES: {[key:number]:string} = {
   0: "Soleado",
   1: "Parcialmente nublado",
   2: "Parcialmente nublado",
@@ -28,7 +28,7 @@ import { usePlace } from '../Context/ContextPlace';
   95: "Tormenta",
   96: "Tormenta con granizo",
   99: "Tormenta con granizo"
-}; */
+};
 const weatherCategoriesEN: { [key: number]: string } = {
   0: "Sunny",
   1: "Partly cloudy",
@@ -78,6 +78,7 @@ interface DailyData {
 }
 
 export const Daily: React.FC = () => {
+  const {language}=useLanguage()
   const [dataDaily, setDataDaily] = useState<DailyForecast[]>([]);
   const { place } = usePlace()
 
@@ -87,31 +88,46 @@ export const Daily: React.FC = () => {
       case ('Soleado'):
         return 'sun';
       case 'Partly cloudy':
+      case 'Parcialmente nublado':
         return 'cloudy1'
       case 'Cloudy':
+      case 'Nublado':
         return 'cloudy2'
       case 'Light rain':
+      case 'Lluvia ligeria':
         return 'rain1';
       case 'Heavy rain':
+      case 'Lluvia fuerte':
         return 'rain2'
       case 'Storm':
+      case 'Tormenta':
         return 'storm'
       case 'Light snow':
+      case 'Nieve ligera':
         return 'snow1'
       case 'Moderate snow':
+      case 'Nieve moderada':
         return 'snow2'
       case 'Heavy snow':
+      case 'Nieve intensa':
         return 'snow3'
       case 'Fog':
+      case 'Neblina':
         return 'fog'
       case 'Storm with hail':
+      case 'Tormenta con granizo':
         return 'hail'
       default:
         return 'unknown'
     }
   }
   const getDescription=(code:number):string=>{
-    return weatherCategoriesEN[code] ||  'Unknown weather'
+    if(language){
+      return weatherCategoriesEN[code] /* ||  'Unknown weather' */
+    }else{
+      return weatherCategoriesES[code]
+    }
+    
   }
   function getDayOfWeek(dateString:string):string {
     const date = new Date(dateString);
@@ -158,11 +174,11 @@ export const Daily: React.FC = () => {
       
     };
     fetchForecast();
-  }, [place]);
+  }, [place, language]);
 
   return (
     <section className="daily">
-      <div className="daily__title">Daily Forecast</div>
+      <div className="daily__title">{language ? 'Daily Forecast' : 'Pronóstico diario'}</div>
       {
         dataDaily.map((item,index)=>(
           <DailyItem key={index} time={item.date} day={item.day} description={item.description} nameImage={item.nameImage} temp_max={item.maxTemp} temp_min={item.minTemp} sunrise={item.sunrise} sunset={item.sunset}/>
