@@ -24,6 +24,9 @@
     justify-content: center;
     gap:20px
 }
+.controls button{
+    background-color: transparent;
+}
 .controls img{
     width:40px;
     height: 25px;
