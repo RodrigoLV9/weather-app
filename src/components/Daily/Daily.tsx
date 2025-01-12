@@ -94,7 +94,7 @@ export const Daily: React.FC = () => {
       case 'Nublado':
         return 'cloudy2'
       case 'Light rain':
-      case 'Lluvia ligeria':
+      case 'Lluvia ligera':
         return 'rain1';
       case 'Heavy rain':
       case 'Lluvia fuerte':
