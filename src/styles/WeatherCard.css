@@ -53,7 +53,7 @@
     display: flex;
 }
 .temp-min{
-    color:aquamarine
+    color:rgb(127, 229, 255)
 }
 .temp-max{
     color: tomato;
