@@ -11,6 +11,7 @@
 body{
   background-color: rgb(30, 31, 32);
   color:rgb(216, 213, 213);
+  overflow-x: hidden;
 }
 button{
   border:none

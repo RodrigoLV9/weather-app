@@ -4,11 +4,14 @@ import './index.css'
 import App from './App.tsx'
 import { ContextPlace } from './components/Context/ContextPlace.tsx'
 import { ContextLanguage } from './components/Context/ContextLanguage.tsx'
+import { ContextSettings } from './components/Context/ContextSettings.tsx'
 createRoot(document.getElementById('root')!).render(
     <ContextLanguage>
-        <ContextPlace>
-            <App />
-        </ContextPlace> 
+        <ContextSettings>
+            <ContextPlace>
+                <App />
+            </ContextPlace> 
+        </ContextSettings>
     </ContextLanguage>
     
     
