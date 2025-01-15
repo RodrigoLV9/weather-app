@@ -76,12 +76,10 @@ interface DailyData {
     weathercode: number[];
   };
 }
-
 export const Daily: React.FC = () => {
   const {language}=useLanguage()
   const [dataDaily, setDataDaily] = useState<DailyForecast[]>([]);
   const { place } = usePlace()
-
   const getnameImage=(code:string)=>{
     switch (code) {
       case ('Sunny'):
@@ -123,24 +121,28 @@ export const Daily: React.FC = () => {
   }
   const getDescription=(code:number):string=>{
     if(language){
-      return weatherCategoriesEN[code] /* ||  'Unknown weather' */
+      return weatherCategoriesEN[code]
     }else{
       return weatherCategoriesES[code]
     }
-    
   }
-  function getDayOfWeek(dateString:string):string {
+  function getDayOfWeek(dateString:string, language:boolean):string {
     const date = new Date(dateString);
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const daysOfWeekEN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const daysOfWeekES = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
     const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
-    return daysOfWeek[localDate.getDay()];
+    if(language){
+      return daysOfWeekEN[localDate.getDay()];
+    }else{
+      return daysOfWeekES[localDate.getDay()];
+    }
   }
   const handleDataDaily = (dailyData:DailyData) => {
     const processedData = dailyData.daily.time.map((_:string, index: number) =>{
       const sunrise_hour=dailyData.daily.sunrise[index].slice(-5)
       const sunset_hour=dailyData.daily.sunset[index].slice(-5)
       const date=dailyData.daily.time[index].slice(-4).replace('-','/')
-      const day=getDayOfWeek(dailyData.daily.time[index])
+      const day=getDayOfWeek(dailyData.daily.time[index],language as true | false)
       const description=getDescription(dailyData.daily.weathercode[index])
       const nameOfImage=getnameImage(description)
       return {
@@ -157,7 +159,6 @@ export const Daily: React.FC = () => {
     });
     setDataDaily(processedData);
   };
-
   useEffect(() => {
     const fetchForecast = async () => {
       if(place){
@@ -171,11 +172,9 @@ export const Daily: React.FC = () => {
           console.error('Error fetching daily forecast:', error);
         }
       }
-      
     };
     fetchForecast();
   }, [place, language]);
-
   return (
     <section className="daily">
       <div className="daily__title">{language ? 'Daily Forecast' : 'Pronóstico diario'}</div>
@@ -184,7 +183,6 @@ export const Daily: React.FC = () => {
           <DailyItem key={index} time={item.date} day={item.day} description={item.description} nameImage={item.nameImage} temp_max={item.maxTemp} temp_min={item.minTemp} sunrise={item.sunrise} sunset={item.sunset}/>
         ))
       }
-      
     </section>
   );
 };
