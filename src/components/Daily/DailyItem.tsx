@@ -1,5 +1,6 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { useLanguage } from '../Context/ContextLanguage'
+import { useSettings } from '../Context/ContextSettings'
 interface PropsDailyValue{
     time:string,
     day:string,
@@ -10,8 +11,34 @@ interface PropsDailyValue{
     sunrise:string,
     sunset:string
 }
+interface TemperatureValue{
+    temp_min:number,
+    temp_max:number
+}
 export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, nameImage, temp_max, temp_min,sunrise,sunset}) => {
+    const {settings}=useSettings()
     const {language}=useLanguage()
+    const [temperature,setTemperature]=useState<TemperatureValue | undefined>(undefined)
+    const calculateTemp=(temp:number, unit: '°F' | '°K' | '°C')=>{
+        const calculate={
+          '°F':(temp*9)/5 + 32,
+          '°K':temp+273.15,
+          '°C':temp
+        }
+        return calculate[unit]
+      }
+      const handleTemperatureValue=(temp_min:number, temp_max:number, unit:'°F' | '°K' | '°C')=>{
+        const min=calculateTemp(temp_min, unit)
+        const max=calculateTemp(temp_max,unit)
+        setTemperature({
+          temp_min:min,
+          temp_max:max
+        })
+      }
+      useEffect(()=>{
+        handleTemperatureValue(temp_min, temp_max, settings?.temperature as '°F'| '°K'| '°C')
+       
+      },[])
   return (
     <div className="dailyItem">
         <div className="dailyItem__time">
@@ -20,7 +47,7 @@ export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, name
         </div>
         <div className="dailyItem__temperature">
             <img src={`/public/icons/${nameImage}.png`} alt={nameImage} className='icon' />
-            <p>{temp_max}°C / {temp_min}°C</p>
+            <p>{temperature?.temp_min.toFixed(2)}{settings?.temperature} / {temperature?.temp_max.toFixed(2)}{settings?.temperature}</p>
         </div>
         <div className="dailyItem__description">
             {description}

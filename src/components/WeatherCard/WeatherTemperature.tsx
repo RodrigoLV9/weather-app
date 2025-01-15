@@ -44,13 +44,14 @@ export const WeatherTemperature:React.FC<WeatherValues>= ({description='', icon=
     if (settings?.temperature) {
       handleTemperatureValue(temp,thermal_sensation, temp_min, temp_max, settings.temperature as '°F' | '°K' | '°C');
     }
-  }, [settings?.temperature, temp]);
+  }, [settings?.temperature, temp, temp_max, temp_min, 
+    thermal_sensation]);
   return (
     <section className='weatherTemperature'>
         <p>{description.charAt(0).toUpperCase() + description.slice(1)}</p>
         <div className="temperature">
             <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="weather-icon" className='temperature__icon' />
-            <p>{temperature?.temp}{settings?.temperature}</p>
+            <p>{temperature?.temp.toFixed(2)}{settings?.temperature}</p>
         </div>
         <p>{language ? 'Thermal sensation:' : 'Sensacion Termica'} {temperature?.temp_sensation.toFixed(2)}{settings?.temperature}</p>
         <div className='temp-minmax'>
