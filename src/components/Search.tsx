@@ -19,11 +19,6 @@ export const Search: React.FC = () => {
   const [places, setPlaces] = useState<Place[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const loc_ref = useRef<HTMLInputElement>(null);
-
-  /* const handleSearch = () => {
-    console.log(loc_ref.current?.value);
-  }; */
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     const selectedPlace = places.find(place => `${place.name}, ${place.state}, ${place.country}` === event.target.value);

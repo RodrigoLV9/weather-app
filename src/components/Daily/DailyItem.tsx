@@ -52,7 +52,6 @@ export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, name
               <p>&nbsp; / &nbsp;</p>
               <p className='max'>{temperature?.temp_max.toFixed(2)}{settings?.temperature}</p>
             </div>
-            {/* <p>{temperature?.temp_min.toFixed(2)}{settings?.temperature} / {temperature?.temp_max.toFixed(2)}{settings?.temperature}</p> */}
         </div>
         <div className="dailyItem__description">
             {description}

@@ -1,11 +1,11 @@
 .hero{
-    background-image: url('./images/hero.jpg');
+    background-image: url('/images/hero.jpg');
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center;
     background-attachment: fixed;
     width: 100vw;
-    height: 100vh + 100px;
+    height: calc(100vh + 100px);
     padding-bottom: 50px;
     filter:opacity(.8)
 }
