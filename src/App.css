@@ -4,8 +4,9 @@
     background-size:cover;
     background-position: center;
     background-attachment: fixed;
-    width: 100vw;
+    width: 100%;
     height: calc(100vh + 100px);
     padding-bottom: 50px;
-    filter:opacity(.8)
+    filter:opacity(.8);
+    overflow-x: hidden;
 }
