@@ -38,7 +38,7 @@ export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, name
       useEffect(()=>{
         handleTemperatureValue(temp_min, temp_max, settings?.temperature as '°F'| '°K'| '°C')
        
-      },[])
+      },[settings?.temperature])
   return (
     <div className="dailyItem">
         <div className="dailyItem__time">
