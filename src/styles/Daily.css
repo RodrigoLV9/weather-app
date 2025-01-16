@@ -5,7 +5,7 @@
 }
 .daily__title{
     padding: 10px;
-    font-size: 20px;
+    font-size: 1.4rem;
     height: auto;
     background-color: var(--bg-tertiary);
     
@@ -51,4 +51,55 @@
     display: flex;
     justify-content: space-between;
     padding:5px 0
+}
+@media screen and (max-width:900px) {
+    .daily{
+        width: 80vw;
+    }
+}
+@media screen and (max-width:720px){
+    .daily__title{
+        font-size: 1.2rem;
+    }
+    .dailyItem{
+        padding: 10px;
+        height: 90px;
+    }
+    .dailyItem p{
+        font-size: .9rem;
+    }
+    .icon{
+        width:30px;
+        height: 30px;
+    }
+    .dailyItem__description{
+        display: none;
+    }
+    .dailyItem__sun{
+        width: 110px;
+    }
+}
+@media screen and (max-width:480px){
+    .daily{
+        width: 90vw;
+    }
+    .daily__title{
+        font-size: 1rem;
+    }
+    .dailyItem{
+        height: 80px;
+    }
+    .dailyItem p{
+        font-size: .7rem;
+    }
+    .dailyItem__temperature{
+        gap:5px
+    }
+    .dailyItem__sun{
+        width: 80px;
+    }
+    .icon{
+        height: 25px;
+        width: 25px;
+    }
 }

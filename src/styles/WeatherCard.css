@@ -88,9 +88,13 @@
 }
 @media screen and (max-width:720px) {
     .weatherCard{
-        width:350px;
+        width:370px;
         font-size: 1rem;
         padding: 0px;
+    }
+    .weatherDetails{
+        margin:0;
+        padding:20px 5px
     }
     .weatherDetails__item p{
         font-size: 1rem;

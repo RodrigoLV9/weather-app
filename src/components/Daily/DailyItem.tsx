@@ -59,11 +59,11 @@ export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, name
         </div>
         <div className="dailyItem__sun">
             <div className="sunrise">
-                <p>{language ? 'Sunrise' : 'Salida de Sol'}</p>
+                <p>{language ? 'Sunrise:' : 'Salida de Sol:'}</p>
                 <p>{sunrise}</p>
             </div>
             <div className="sunset">
-                <p>{language ? 'Sunset' : 'Puesta de Sol'}</p>
+                <p>{language ? 'Sunset:' : 'Puesta de Sol:'}</p>
                 <p>{sunset}</p>
             </div>
         </div>
