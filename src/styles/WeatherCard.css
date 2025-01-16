@@ -67,10 +67,7 @@
 .temp-max{
     color: tomato;
 }
-
-
 /* COMPONENT: WeatherDetails */
-
 .weatherDetails{
     display: flex;
     align-items: center;
@@ -88,4 +85,44 @@
 }
 .weatherDetails__item-icon{
     font-size: 1.4em;
+}
+@media screen and (max-width:720px) {
+    .weatherCard{
+        width:350px;
+        font-size: 1rem;
+        padding: 0px;
+    }
+    .weatherDetails__item p{
+        font-size: 1rem;
+    }
+    
+}
+@media screen and (max-width:480px){
+    .weatherCard{
+        width:300px;
+        font-size: 1rem;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .weatherHeader{
+        padding:0 10px;
+        font-size: .9rem;
+    }
+    .temperature{
+        padding:0px;
+        margin:0
+    }
+    .temperature__icon{
+        font-size: 1.2rem;
+    }
+    .temperature p{
+        font-size: 1.5rem;
+    }
+    .weatherDetails__item{
+        gap:5px
+    }
+    .weatherDetails__item p{
+        font-size: .8rem;
+    }
+
 }
