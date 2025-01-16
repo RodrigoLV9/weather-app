@@ -1,7 +1,7 @@
 .search{
     display: flex;
     width: min-content;
-    margin:70px auto;
+    margin:40px auto;
     position:relative
 }
 .search input{
@@ -16,10 +16,14 @@
 .search button{
     display: flex;
     align-items: center;
+    justify-content: center;
     position:absolute;
-    right: 7px;
-    top:7px
+    right: 0;
+    border-radius: 50%;
+    height: 100%;
+    width:40px;
 }
 .search__icon{
     font-size: 2em;
+    
 }

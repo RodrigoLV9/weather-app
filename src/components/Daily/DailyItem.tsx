@@ -47,7 +47,12 @@ export const DailyItem:React.FC<PropsDailyValue> = ({time, day,description, name
         </div>
         <div className="dailyItem__temperature">
             <img src={`/public/icons/${nameImage}.png`} alt={nameImage} className='icon' />
-            <p>{temperature?.temp_min.toFixed(2)}{settings?.temperature} / {temperature?.temp_max.toFixed(2)}{settings?.temperature}</p>
+            <div className="minmax">
+              <p className='min'>{temperature?.temp_min.toFixed(2)}{settings?.temperature}</p>
+              <p>&nbsp; / &nbsp;</p>
+              <p className='max'>{temperature?.temp_max.toFixed(2)}{settings?.temperature}</p>
+            </div>
+            {/* <p>{temperature?.temp_min.toFixed(2)}{settings?.temperature} / {temperature?.temp_max.toFixed(2)}{settings?.temperature}</p> */}
         </div>
         <div className="dailyItem__description">
             {description}

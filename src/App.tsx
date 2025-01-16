@@ -8,9 +8,11 @@ function App() {
 
   return (
     <>
-      <Header/>
-      <Search/>
-      <WeatherCard/>
+      <div className='hero'>
+        <Header/>
+        <Search/>
+        <WeatherCard/>
+      </div>
       <Daily/>
       <Footer/>
     </>

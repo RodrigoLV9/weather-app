@@ -1,7 +1,11 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  --bg-primary:rgb(30, 31, 32);
+  --bg-secondary:rgb(21, 60, 134);
+  --bg-tertiary:rgb(24, 24, 23);
+  --color1:rgb(216, 213, 213);
+  --color2:rgb(233, 186, 57);
+  --color3:rgb(82, 82, 82);
 }
 *{
   margin:0;
@@ -9,8 +13,8 @@
   box-sizing: border-box;
 }
 body{
-  background-color: rgb(30, 31, 32);
-  color:rgb(216, 213, 213);
+  background-color:var(--bg-primary);
+  color:var(--color1);
   overflow-x: hidden;
 }
 button{

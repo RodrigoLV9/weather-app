@@ -48,7 +48,7 @@ export const WeatherTemperature:React.FC<WeatherValues>= ({description='', icon=
     thermal_sensation]);
   return (
     <section className='weatherTemperature'>
-        <p>{description.charAt(0).toUpperCase() + description.slice(1)}</p>
+        <p className='weatherTemperature__description'>{description.charAt(0).toUpperCase() + description.slice(1)}</p>
         <div className="temperature">
             <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="weather-icon" className='temperature__icon' />
             <p>{temperature?.temp.toFixed(2)}{settings?.temperature}</p>
@@ -56,7 +56,7 @@ export const WeatherTemperature:React.FC<WeatherValues>= ({description='', icon=
         <p>{language ? 'Thermal sensation:' : 'Sensacion Termica'} {temperature?.temp_sensation.toFixed(2)}{settings?.temperature}</p>
         <div className='temp-minmax'>
             <p className='temp-min'>{temperature?.temp_min.toFixed(2)}{settings?.temperature}</p>
-            <p>/</p>
+            <p>&nbsp;/&nbsp;</p>
             <p className='temp-max'>{temperature?.temp_max.toFixed(2)}{settings?.temperature}</p>
         </div>
     </section>
