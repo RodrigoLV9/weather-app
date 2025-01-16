@@ -24,6 +24,27 @@
     width:40px;
 }
 .search__icon{
-    font-size: 2em;
-    
+    font-size: 2em; 
+}
+@media screen and (max-width:720px) {
+    .search input{
+        width: 400px;
+        height: 35px;
+    }
+    .search__icon{
+        font-size: 1.6rem;
+    }
+}
+@media screen and (max-width:480px) {
+    .search{
+        margin:20px auto;
+    }
+    .search input{
+        width: 280px;
+        height: 30px;
+        font-size: .9rem;
+    }
+    .search__icon{
+        font-size: 1.4rem;
+    }
 }

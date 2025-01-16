@@ -10,8 +10,7 @@
     .footer{
         height: 50px;
         font-size:.9rem
-    }
-    
+    } 
 }
 @media screen and (max-width:480px) {
     .footer{
